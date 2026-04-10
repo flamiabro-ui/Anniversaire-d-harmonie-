@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Joyeux Anniversaire Harmonie</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #000;
+      overflow: hidden;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .message {
+      font-size: 2.5em;
+      color: #fff;
+      text-shadow: 2px 2px 8px #ff3366;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); color: #fff; }
+      50% { transform: scale(1.2); color: #ff3366; }
+      100% { transform: scale(1); color: #fff; }
+    }
+
+    /* Diaporama */
+    .slideshow {
+      position: relative;
+      width: 600px;
+      height: 400px;
+      overflow: hidden;
+      border: 5px solid #fff;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #ff3366;
+      margin-bottom: 20px;
+    }
+
+    .slides {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 1s ease-in-out;
+    }
+
+    .slides img {
+      width: 600px;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    /* Bouton musique */
+    .music-btn {
+      background: #ff3366;
+      color: #fff;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1.2em;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #fff;
+      transition: transform 0.2s, background 0.3s;
+      margin-top: 20px;
+    }
+
+    .music-btn:hover {
+      transform: scale(1.1);
+      background: #ff6699;
+    }
+
+    /* Grand cœur */
+    .big-heart {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      background: red;
+      transform: rotate(45deg);
+      animation: beat 1s infinite;
+      margin-top: 20px;
+    }
+
+    .big-heart::before,
+    .big-heart::after {
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .big-heart::before {
+      top: -75px;
+      left: 0;
+    }
+
+    .big-heart::after {
+      left: 75px;
+      top: 0;
+    }
+
+    @keyframes beat {
+      0% { transform: scale(1) rotate(45deg); }
+      50% { transform: scale(1.2) rotate(45deg); }
+      100% { transform: scale(1) rotate(45deg); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Message -->
+  <div class="message">💖 Joyeux Anniversaire <m>Harmonie</m> 💖</div>
+
+  <!-- Diaporama -->
+  <div class="slideshow">
+    <div class="slides" id="slides">
+      <!-- Ajoute autant de photos que tu veux -->
+      <img src="1.jpg" alt="Photo 1">
+      <img src="2.jpg" alt="Photo 2">
+      <img src="3.jpg" alt="Photo 3">
+      <img src="4.jpg" alt="Photo 4">
+      <img src="5.jpg" alt="Photo 5">
+      <img src="6.jpg" alt="Photo 6">
+      <footer>De la part de yvo😁</footer>
+    </div>
+  </div>
+
+  <!-- Grand cœur -->
+  <div class="big-heart"></div>
+
+  <!-- Bouton musique -->
+  <button class="music-btn" onclick="toggleMusic()">🎶 Play/Pause Musique</button>
+
+  <!-- Musique locale -->
+  <audio id="music" loop>
+    <source src="zik.mp3" type="audio/mpeg">
+    Ton navigateur ne supporte pas l’audio.
+  </audio>
+
+  <script>
+    // Diaporama automatique
+    const slides = document.getElementById("slides");
+    let index = 0;
+    setInterval(() => {
+      index = (index + 1) % slides.children.length;
+      slides.style.transform = `translateX(-${index * 600}px)`;
+    }, 3000); // change toutes les 3 secondes
+
+    // Contrôle musique
+    const music = document.getElementById("music");
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+  </script>
+ 
+</body>
+</html>
